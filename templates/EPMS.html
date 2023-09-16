@@ -6,9 +6,9 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="/static/echarts.js"></script>
+  <script src="/static/js/echarts.js"></script>
   <link href="/static/css/layui.css" rel="stylesheet">
-  <link href="">
+  <link rel="stylesheet" href="/static/css/index.css"/>
   <style>
   .module {
     display: none;
@@ -21,14 +21,14 @@
 <body>
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <div class="layui-logo layui-hide-xs layui-bg-black" style="width: 270px">岩体质量评估及安全预警系统</div>
+    <div class="layui-logo layui-hide-xs layui-bg-black">乌海抽水蓄能电站</div>
     <!-- 头部区域（可配合layui 已有的水平导航） -->
-    <ul class="layui-nav layui-layout-left" style="padding-left: 70px">
+    <ul class="layui-nav layui-layout-left">
       <!-- 移动端显示 -->
       <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
         <i class="layui-icon layui-icon-spread-left"></i>
       </li>
-      <li class="layui-nav-item layui-hide-xs layui-bg-red" ><a href="javascript:;">实时数据</a></li>
+      <li class="layui-nav-item layui-hide-xs" ><a href="javascript:;">实时数据</a></li>
       <li class="layui-nav-item layui-hide-xs" ><a href="javascript:;">数据图示</a></li>
       <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">数据清洗</a></li>
       <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">预警阈值</a></li>
@@ -61,95 +61,45 @@
       </li>
     </ul>
   </div><!--头部-->
-  <div class="layui-side layui-bg-black"style="width: 280px">
-    <div class="layui-side-scroll" style="width: 280px">
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll" >
       <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
-      <ul class="layui-nav layui-nav-tree" lay-filter="test"style="width: 270px" >
-        <li class="layui-nav-item" onclick="showModule1('main')"><a href="javascript:;">项目总览</a></li>
+      <ul class="layui-nav layui-nav-tree" lay-filter="test" >
+        <li class="layui-nav-item" ><a href="javascript:;" onclick="show('xiangmuzonglan')">项目总览</a></li>
 
         <li class="layui-nav-item layui-nav-itemed">
-          <a class="" href="javascript:;">内蒙乌海抽水蓄能电站输水隧洞</a>
+          <a class="" href="javascript:;">预警方法</a>
           <dl class="layui-nav-child">
-            <dd><a href="javascript:;" onclick="showModule1('table1')">多点位移</a></dd>
+            <dd><a href="javascript:;" onclick="show('weiyijiance')">多点位移</a></dd>
             <dd><a href="javascript:;">锚杆应力</a></dd>
             <dd><a href="javascript:;">孔隙水压</a></dd>
-            <dd><a href="javascript:;">微震监测</a></dd>
+            <dd><a href="javascript:;" onclick="show('weizhenjiance')">微震监测</a></dd>
             <dd><a href="javascript:;">激光扫描</a></dd>
             <dd><a href="javascript:;">倾角加速度</a></dd>
             <dd><a href="javascript:;">阵列式位移</a></dd>
             <dd><a href="javascript:;">多参数智能预警</a></dd>
           </dl>
+        </li>
 
-        </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">内蒙乌海抽水蓄能电站地下厂房</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;")>多点位移计</a></dd>
-            <dd><a href="javascript:;">锚杆应力</a></dd>
-            <dd><a href="javascript:;">孔隙水压</a></dd>
-            <dd><a href="javascript:;">微震监测</a></dd>
-            <dd><a href="javascript:;">激光扫描</a></dd>
-            <dd><a href="javascript:;">倾角加速度</a></dd>
-            <dd><a href="javascript:;">阵列式位移</a></dd>
-            <dd><a href="javascript:;">多参数智能预警</a></dd>
 
-          </dl>
-        <li class="layui-nav-item">
-          <a href="javascript:;">内蒙乌海抽水蓄能电站下水库边坡</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">多参数智能预警</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">甘肃武九高速高楼山隧道</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">多参数智能预警</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">辽宁南芬露天矿高陡边坡</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">多参数智能预警</a></dd>
-          </dl>
-        </li>
-        <li class="layui-nav-item">
-          <a href="javascript:;">陕西引汉济渭</a>
-          <dl class="layui-nav-child">
-            <dd><a href="javascript:;">多参数智能预警</a></dd>
-          </dl>
-        </li>
+
+
       </ul>
     </div>
   </div><!--侧边栏导航部分-->
   <div class="layui-body" style="padding-top: 10px">
     <!-- 内容主体区域 -->
-    <div style="padding: 90px;">
-      <blockquote class="layui-elem-quote layui-text" style="padding-left:10px">
-        内蒙乌海抽水蓄能电站输水隧洞监测数据
-      </blockquote>
-      <div class="layui-card-header" style="text-align: center;padding-bottom: 45px" >
-          <p style="font-size: 26px;font-family: 黑体; font-weight: bold;" >位移监测设备</p>
-          <p style="font-size: 14px;font-family: 宋体;color: #8d8d8d; ">流水号: 暂无 | 类型: 多点位移监测 | 测点数:25 | 当前状态:正常 | 最后上报时间: 2023-05-08 11:00:04 </p>
-      </div>
-      <!--表格区域-->
-      <div class="layui-card layui-panel" style="padding-top:0px;" id="table1">
-        <table class="layui-hide" id="ID-table-demo-page"></table>
-        <script type="text/html" id="ID-table-demo-page-pagebar">
-        <div class="layui-btn-container">
-            <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn1">底部按钮1</button>
-            <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn2">底部按钮2</button>
-        </div>
-        </script>
-      </div>
-      <div class="module" id="main" style="width: 600px ;height: 400px; padding-top:100px"></div>
+      <iframe id="xiangmuzonglan" src="/static/HTML/项目总览.html" style="height: 960px;width: 1700px; padding-top: 50px; display: block"></iframe>
+      <iframe id="weiyijiance" src="/static/HTML/位移监测.html" style="height: 960px;width: 1700px; padding-top: 50px; display: none"></iframe>
+      <iframe id="weizhenjiance" src="/static/HTML/微震监测.html" style="height: 960px;width: 1700px; padding-top: 50px; display: none"></iframe>
     </div>
-    </div>
-    </div><!--主体部分-->
-
 </div>
-<script src="/static/layui.js"></script>
+    <!--主体部分-->
+
+
+<script src="/static/js/layui.js"></script>
 <script>
-//JS
+//初始化右侧列表
 layui.use(['element', 'layer', 'util'], function(){
   var element = layui.element;
   var layer = layui.layer;
@@ -176,90 +126,35 @@ layui.use(['element', 'layer', 'util'], function(){
   });
 });
 
+function show(ID) {
+    console.log('show函数已经运行')
+  var iframes = document.querySelectorAll("iframe");
+  for (var i = 0; i < iframes.length; i++) {
+    iframes[i].style.display = "none";
+  }
 
-layui.use('table', function(){
-  var table = layui.table;
+  var iframe = document.getElementById(ID);
+  if (iframe) {
+    iframe.style.display = "block";
+  }
+}
+/*这段代码定义了一个 JavaScript 函数 show(ID)，该函数的主要目的是用于在多个 <iframe> 元素之间切换显示。让我解释一下它的功能：
 
-  // 加载table实例
-  table.render({
-    elem: '#ID-table-demo-page',
-    url:'/static/12.json', // 此处为静态模拟数据，实际使用时需换成真实接口，数据接口
-    page: { // 支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-      limits:5,
-      layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
-      //curr: 5, //设定初始在第 5 页
-      groups: 2, //只显示 1 个连续页码
-      first: false, //不显示首页
-      last: false //不显示尾页
-    },
-    pagebar: '#ID-table-demo-page-pagebar', // 分页栏模板
-    cols: [[
-      {field:'id', minwidth:150, title: '设备ID', sort: true},
-      {field:'username', minwidth:150, title: '累积位移',sort: true},
-      {field:'sex', minwidth:150, title: '24h内位移量', sort: true},
-      {field:'city', minwidth:150, title: '最近一次检测时间',sort: true},
-      {field:'sign', minwidth:150,  title: '变形速度',sort: true},
-      {field:'safety', minwidth:150,  title: '安全状态',sort: true},
-      {field:'experience', minwidth:150, title: '报警次数', sort: true}
-    ]]
-  });
-  // 底部分页栏事件
-  table.on('pagebar(ID-table-demo-page)', function(obj){
-    var eventValue = obj.event; // 获得按钮 lay-event 值
-    layer.msg(eventValue);
-  });
-});
+var iframes = document.querySelectorAll("iframe");：这一行代码使用 document.querySelectorAll 方法来选取页面中所有的 <iframe> 元素，并将它们存储在 iframes 变量中。
 
-function showModule1(moduleId) {
-      var modules1 = document.getElementsByClassName('module');
-      var modules2=document.getElementsByClassName('layui-card layui-panel');
+for (var i = 0; i < iframes.length; i++) { iframes[i].style.display = "none"; }：这部分代码是一个 for 循环，它遍历了所有选取的 <iframe> 元素。在每次迭代中，它将当前 <iframe> 的 style.display 属性设置为 "none"，这会将其隐藏，因为 "none" 表示不可见。
 
-      //var table=document.getElementById('table1')
-          //table.style.display='none';
-      //先消除每个元素的activve类
-      for (var i = 0; i < modules1.length; i++) {
-        modules1[i].style.display='none';
-      }
-      for (var i = 0; i < modules2.length; i++) {
-        modules2[i].style.display='none';
-      }
-      //增加点击按钮元素的active类
+var iframe = document.getElementById(ID);：这一行代码使用给定的 ID 参数来获取指定的 <iframe> 元素，它假设传入的 ID 是一个有效的元素 ID。
 
-      document.getElementById(moduleId).style.display='block';
-      console.log(document.getElementById(moduleId).className)
-    // 隐藏表格区域
-    console.log('恭喜发财')//相当于print（）
-    var tableContainer = document.getElementById('table1');
-    //tableContainer.style.display = 'none';
-    }
-// 基于准备好的dom，初始化echarts实例
-  var myChart = echarts.init(document.getElementById('main'));
+if (iframe) { iframe.style.display = "block"; }：如果找到了具有传入的 ID 的 <iframe> 元素（也就是 iframe 不为 null），则将该 <iframe> 的 style.display 属性设置为 "block"，以将其显示出来。
 
-  // 指定图表的配置项和数据
-  var option = {
-    title: {
-      text: 'ECharts'
-    },
-    tooltip: {},
-    legend: {
-      data: ['位移检测值']//图例的名称
-    },
-    xAxis: {
-      data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]//x轴元素
-    },
-    yAxis: {},//默认显示数字
-    series: [
-      {
-        name: '位移检测值',
-        type: 'line',
-        data: [0.3215976894568413, 0.7561829246335816, 0.2469196578452314, 0.894656785743119, 0.459672104963985,
-            0.5482239821967498, 0.128784682356987, 0.7198364956214783, 0.8674519876324782, 0.5928319745248152]
-      }
-    ]
-  };
+综合起来，这个 show(ID) 函数的作用是：
 
-  // 使用刚指定的配置项和数据显示图表。
-  myChart.setOption(option);
+先隐藏页面中所有的 <iframe> 元素，确保它们都不可见。
+然后，根据传入的 ID 参数，找到特定的 <iframe> 元素，并将其显示出来。
+这种方法可用于在多个 <iframe> 页面之间进行切换，确保一次只显示一个页面。*/
+
+
 </script>
 </body>
 </html>

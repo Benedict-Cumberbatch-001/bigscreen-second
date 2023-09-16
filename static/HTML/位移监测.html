@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>位移监测页面</title>
+    <meta charset="UTF-8">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="/static/js/echarts.js"></script>
+    <link href="/static/css/layui.css" rel="stylesheet">
+</head>
+<style>
+    .box{
+
+    }
+    .container{
+        padding: 60px;
+
+    }
+</style>
+<body>
+<div class="box" style="height: 960px;width: 1700px;">
+    <div class="container" >
+            <!--
+          <blockquote class="layui-elem-quote layui-text" style="padding-left:10px">
+            内蒙乌海抽水蓄能电站输水隧洞监测数据
+          </blockquote>-->
+          <div class="layui-card-header" style="text-align: center;padding-bottom: 45px" >
+              <p style="font-size: 26px;font-family: 黑体; font-weight: bold;" >位移监测设备</p>
+              <p style="font-size: 14px;font-family: 宋体;color: #8d8d8d; ">流水号: 暂无 | 类型: 多点位移监测 | 测点数:25 | 当前状态:正常 | 最后上报时间: 2023-05-08 11:00:04 </p>
+          </div>
+          <!--表格区域-->
+          <div class="layui-card layui-panel" style="padding-top:0px;" id="table1">
+            <table class="layui-hide" id="ID-table-demo-page"></table>
+            <script type="text/html" id="ID-table-demo-page-pagebar">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn1">底部按钮1</button>
+                <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn2">底部按钮2</button>
+            </div>
+            </script>
+          </div>
+    </div>
+
+</div>
+
+
+</body>
+<script src="/static/js/layui.js"></script>
+<script>
+  layui.use('table', function(){
+  var table = layui.table;
+
+  // 加载table实例
+  table.render({
+    elem: '#ID-table-demo-page',
+    url:'/static/12.json', // 此处为静态模拟数据，实际使用时需换成真实接口，数据接口
+    page: { // 支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+      limits:5,
+      layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
+      //curr: 5, //设定初始在第 5 页
+      groups: 2, //只显示 1 个连续页码
+      first: false, //不显示首页
+      last: false //不显示尾页
+    },
+    pagebar: '#ID-table-demo-page-pagebar', // 分页栏模板
+    cols: [[
+      {field:'id', minwidth:150, title: '设备ID', sort: true},
+      {field:'username', minwidth:150, title: '累积位移',sort: true},
+      {field:'sex', minwidth:150, title: '24h内位移量', sort: true},
+      {field:'city', minwidth:150, title: '最近一次检测时间',sort: true},
+      {field:'sign', minwidth:150,  title: '变形速度',sort: true},
+      {field:'safety', minwidth:150,  title: '安全状态',sort: true},
+      {field:'experience', minwidth:150, title: '报警次数', sort: true}
+    ]]
+  });
+  // 底部分页栏事件
+  table.on('pagebar(ID-table-demo-page)', function(obj){
+    var eventValue = obj.event; // 获得按钮 lay-event 值
+    layer.msg(eventValue);
+  });
+});
+
+
+</script>
+</html>
