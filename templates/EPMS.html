@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>岩体质量评估及安全预警系统</title>
+  <meta name="renderer" content="webkit">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="/static/echarts.js"></script>
+  <link href="/static/css/layui.css" rel="stylesheet">
+  <link href="">
+  <style>
+  .module {
+    display: none;
+  }
+  .active {
+    display: block;
+  }
+  </style>
+</head>
+<body>
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <div class="layui-logo layui-hide-xs layui-bg-black" style="width: 270px">岩体质量评估及安全预警系统</div>
+    <!-- 头部区域（可配合layui 已有的水平导航） -->
+    <ul class="layui-nav layui-layout-left" style="padding-left: 70px">
+      <!-- 移动端显示 -->
+      <li class="layui-nav-item layui-show-xs-inline-block layui-hide-sm" lay-header-event="menuLeft">
+        <i class="layui-icon layui-icon-spread-left"></i>
+      </li>
+      <li class="layui-nav-item layui-hide-xs layui-bg-red" ><a href="javascript:;">实时数据</a></li>
+      <li class="layui-nav-item layui-hide-xs" ><a href="javascript:;">数据图示</a></li>
+      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">数据清洗</a></li>
+      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">预警阈值</a></li>
+      <li class="layui-nav-item layui-hide-xs"><a href="javascript:;">预警汇总</a></li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">报警汇总</a>
+        <dl class="layui-nav-child">
+          <dd><a href="javascript:;">menu 11</a></dd>
+          <dd><a href="javascript:;">menu 22</a></dd>
+          <dd><a href="javascript:;">menu 33</a></dd>
+        </dl>
+      </li>
+    </ul>
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item layui-hide layui-show-sm-inline-block">
+        <a href="javascript:;">
+          <img src="//unpkg.com/outeres@0.0.10/img/layui/icon-v2.png" class="layui-nav-img">
+          管理员
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="javascript:;">账户管理</a></dd>
+          <dd><a href="javascript:;">设置</a></dd>
+          <dd><a href="javascript:;">登出</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item" lay-header-event="menuRight" lay-unselect>
+        <a href="javascript:;">
+          <i class="layui-icon layui-icon-more-vertical"></i>
+        </a>
+      </li>
+    </ul>
+  </div><!--头部-->
+  <div class="layui-side layui-bg-black"style="width: 280px">
+    <div class="layui-side-scroll" style="width: 280px">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree" lay-filter="test"style="width: 270px" >
+        <li class="layui-nav-item" onclick="showModule1('main')"><a href="javascript:;">项目总览</a></li>
+
+        <li class="layui-nav-item layui-nav-itemed">
+          <a class="" href="javascript:;">内蒙乌海抽水蓄能电站输水隧洞</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;" onclick="showModule1('table1')">多点位移</a></dd>
+            <dd><a href="javascript:;">锚杆应力</a></dd>
+            <dd><a href="javascript:;">孔隙水压</a></dd>
+            <dd><a href="javascript:;">微震监测</a></dd>
+            <dd><a href="javascript:;">激光扫描</a></dd>
+            <dd><a href="javascript:;">倾角加速度</a></dd>
+            <dd><a href="javascript:;">阵列式位移</a></dd>
+            <dd><a href="javascript:;">多参数智能预警</a></dd>
+          </dl>
+
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">内蒙乌海抽水蓄能电站地下厂房</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;")>多点位移计</a></dd>
+            <dd><a href="javascript:;">锚杆应力</a></dd>
+            <dd><a href="javascript:;">孔隙水压</a></dd>
+            <dd><a href="javascript:;">微震监测</a></dd>
+            <dd><a href="javascript:;">激光扫描</a></dd>
+            <dd><a href="javascript:;">倾角加速度</a></dd>
+            <dd><a href="javascript:;">阵列式位移</a></dd>
+            <dd><a href="javascript:;">多参数智能预警</a></dd>
+
+          </dl>
+        <li class="layui-nav-item">
+          <a href="javascript:;">内蒙乌海抽水蓄能电站下水库边坡</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">多参数智能预警</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">甘肃武九高速高楼山隧道</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">多参数智能预警</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">辽宁南芬露天矿高陡边坡</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">多参数智能预警</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">陕西引汉济渭</a>
+          <dl class="layui-nav-child">
+            <dd><a href="javascript:;">多参数智能预警</a></dd>
+          </dl>
+        </li>
+      </ul>
+    </div>
+  </div><!--侧边栏导航部分-->
+  <div class="layui-body" style="padding-top: 10px">
+    <!-- 内容主体区域 -->
+    <div style="padding: 90px;">
+      <blockquote class="layui-elem-quote layui-text" style="padding-left:10px">
+        内蒙乌海抽水蓄能电站输水隧洞监测数据
+      </blockquote>
+      <div class="layui-card-header" style="text-align: center;padding-bottom: 45px" >
+          <p style="font-size: 26px;font-family: 黑体; font-weight: bold;" >位移监测设备</p>
+          <p style="font-size: 14px;font-family: 宋体;color: #8d8d8d; ">流水号: 暂无 | 类型: 多点位移监测 | 测点数:25 | 当前状态:正常 | 最后上报时间: 2023-05-08 11:00:04 </p>
+      </div>
+      <!--表格区域-->
+      <div class="layui-card layui-panel" style="padding-top:0px;" id="table1">
+        <table class="layui-hide" id="ID-table-demo-page"></table>
+        <script type="text/html" id="ID-table-demo-page-pagebar">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn1">底部按钮1</button>
+            <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn2">底部按钮2</button>
+        </div>
+        </script>
+      </div>
+      <div class="module" id="main" style="width: 600px ;height: 400px; padding-top:100px"></div>
+    </div>
+    </div>
+    </div><!--主体部分-->
+
+</div>
+<script src="/static/layui.js"></script>
+<script>
+//JS
+layui.use(['element', 'layer', 'util'], function(){
+  var element = layui.element;
+  var layer = layui.layer;
+  var util = layui.util;
+  var $ = layui.$;
+
+  //头部事件
+  util.event('lay-header-event', {
+    menuLeft: function(othis){ // 左侧菜单事件
+      layer.msg('展开左侧菜单的操作', {icon: 0});
+    },
+    menuRight: function(){  // 右侧菜单事件
+      layer.open({
+        type: 1,
+        title: '更多',
+        content: '<div style="padding: 15px;">处理右侧面板的操作</div>',
+        area: ['260px', '100%'],
+        offset: 'rt', // 右上角
+        anim: 'slideLeft', // 从右侧抽屉滑出
+        shadeClose: true,
+        scrollbar: false
+      });
+    }
+  });
+});
+
+
+layui.use('table', function(){
+  var table = layui.table;
+
+  // 加载table实例
+  table.render({
+    elem: '#ID-table-demo-page',
+    url:'/static/12.json', // 此处为静态模拟数据，实际使用时需换成真实接口，数据接口
+    page: { // 支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+      limits:5,
+      layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
+      //curr: 5, //设定初始在第 5 页
+      groups: 2, //只显示 1 个连续页码
+      first: false, //不显示首页
+      last: false //不显示尾页
+    },
+    pagebar: '#ID-table-demo-page-pagebar', // 分页栏模板
+    cols: [[
+      {field:'id', minwidth:150, title: '设备ID', sort: true},
+      {field:'username', minwidth:150, title: '累积位移',sort: true},
+      {field:'sex', minwidth:150, title: '24h内位移量', sort: true},
+      {field:'city', minwidth:150, title: '最近一次检测时间',sort: true},
+      {field:'sign', minwidth:150,  title: '变形速度',sort: true},
+      {field:'safety', minwidth:150,  title: '安全状态',sort: true},
+      {field:'experience', minwidth:150, title: '报警次数', sort: true}
+    ]]
+  });
+  // 底部分页栏事件
+  table.on('pagebar(ID-table-demo-page)', function(obj){
+    var eventValue = obj.event; // 获得按钮 lay-event 值
+    layer.msg(eventValue);
+  });
+});
+
+function showModule1(moduleId) {
+      var modules1 = document.getElementsByClassName('module');
+      var modules2=document.getElementsByClassName('layui-card layui-panel');
+
+      //var table=document.getElementById('table1')
+          //table.style.display='none';
+      //先消除每个元素的activve类
+      for (var i = 0; i < modules1.length; i++) {
+        modules1[i].style.display='none';
+      }
+      for (var i = 0; i < modules2.length; i++) {
+        modules2[i].style.display='none';
+      }
+      //增加点击按钮元素的active类
+
+      document.getElementById(moduleId).style.display='block';
+      console.log(document.getElementById(moduleId).className)
+    // 隐藏表格区域
+    console.log('恭喜发财')//相当于print（）
+    var tableContainer = document.getElementById('table1');
+    //tableContainer.style.display = 'none';
+    }
+// 基于准备好的dom，初始化echarts实例
+  var myChart = echarts.init(document.getElementById('main'));
+
+  // 指定图表的配置项和数据
+  var option = {
+    title: {
+      text: 'ECharts'
+    },
+    tooltip: {},
+    legend: {
+      data: ['位移检测值']//图例的名称
+    },
+    xAxis: {
+      data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]//x轴元素
+    },
+    yAxis: {},//默认显示数字
+    series: [
+      {
+        name: '位移检测值',
+        type: 'line',
+        data: [0.3215976894568413, 0.7561829246335816, 0.2469196578452314, 0.894656785743119, 0.459672104963985,
+            0.5482239821967498, 0.128784682356987, 0.7198364956214783, 0.8674519876324782, 0.5928319745248152]
+      }
+    ]
+  };
+
+  // 使用刚指定的配置项和数据显示图表。
+  myChart.setOption(option);
+</script>
+</body>
+</html>

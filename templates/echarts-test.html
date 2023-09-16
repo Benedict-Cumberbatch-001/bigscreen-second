@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>echarts test</title>
+    <script src="/static/echarts.js"></script>
+</head>
+<body>
+<!--test drawing charts using echarts-->
+    <div id="main" style="width: 600px ;height: 400px"></div>
+        <script type="text/javascript" >
+          // 基于准备好的dom，初始化echarts实例
+          var myChart = echarts.init(document.getElementById('main'));
+
+          // 指定图表的配置项和数据
+          var option = {
+            title: {
+              text: 'ECharts'
+            },
+            tooltip: {},
+            legend: {
+              data: ['位移检测值']//图例的名称
+            },
+            xAxis: {
+              data: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]//x轴元素
+            },
+            yAxis: {},//默认显示数字
+            series: [
+              {
+                name: '位移检测值',
+                type: 'line',
+                data: [0.3215976894568413, 0.7561829246335816, 0.2469196578452314, 0.894656785743119, 0.459672104963985,
+                    0.5482239821967498, 0.128784682356987, 0.7198364956214783, 0.8674519876324782, 0.5928319745248152]
+              }
+            ]
+          };
+
+          // 使用刚指定的配置项和数据显示图表。
+          myChart.setOption(option);
+        </script>
+    </body>
+</html>
