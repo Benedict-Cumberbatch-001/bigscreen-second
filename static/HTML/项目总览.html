@@ -40,27 +40,6 @@
           // 使用刚指定的配置项和数据显示图表。
           myChart.setOption(option);
 
-function showModule1(moduleId) {
-      var modules1 = document.getElementsByClassName('module');
-      var modules2=document.getElementsByClassName('layui-card layui-panel');
 
-      //var table=document.getElementById('table1')
-          //table.style.display='none';
-      //先消除每个元素的activve类
-      for (var i = 0; i < modules1.length; i++) {
-        modules1[i].style.display='none';
-      }
-      for (var i = 0; i < modules2.length; i++) {
-        modules2[i].style.display='none';
-      }
-      //增加点击按钮元素的active类
-
-      document.getElementById(moduleId).style.display='block';
-      console.log(document.getElementById(moduleId).className)
-    // 隐藏表格区域
-    console.log('恭喜发财')//相当于print（）
-    var tableContainer = document.getElementById('table1');
-    //tableContainer.style.display = 'none';
-    }
         </script>
 </html>

@@ -1,0 +1,679 @@
+//css
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li{
+  list-style: none;
+}
+/* 声明字体*/
+@font-face {
+  font-family: electronicFont;
+  src: url("/static/font/DS-DIGIT.TTF");
+}
+body{
+  overflow-y: hidden;
+  background: url("/static/images/bg.jpg") no-repeat top center;
+
+}
+header{
+  position: relative;
+  height: 1.5rem;
+  background: url("/static/images/header.png")
+  no-repeat;
+  background-size: 98.5%; /* 调整图片大小，cover会自动缩放图片使其填满背景区域 */
+  background-position: bottom;
+  .logo{
+      background: url("/static/images/logo.svg") no-repeat;
+      position: absolute;
+      background-size:100%;
+      width: 2.5rem;
+      height: 2.5rem;
+      top: 0.3rem;
+      left: 1.5rem;
+    }
+  .head{
+    .head-gif{
+      background: url("/static/images/title_border.png") no-repeat center center ;
+      background-size: 60%;
+      height: 100%;
+      width: 100%;
+      position: absolute;
+      top: 0.1rem;
+
+    }
+
+    h1{
+    font-size: 0.5rem;
+    font-family: 黑体;
+      font-weight: 800;
+    color: white;
+      //vertical-align: bottom;
+    //text-align: center;
+      position: absolute;
+    line-height: 1rem;
+      top: 12%;
+      left:36%;
+  }}
+  .showTime{
+    font-size: 0.2rem;
+    position: absolute;
+    right: 0.375rem;
+    line-height: 0.9375rem;
+    color: rgba(255,255,255,0.8);
+    top: 15%;
+    //h1占用了所有head空间，所以showtime默认在下面，所以应当加一个top值
+  }
+}
+//使用.作为前缀来表示一个类选择器。当你在.mainbox前面加上.，表示你正在选择具有class="mainbox"属性的元素
+.mainbox{
+  //子元素可以根据容器的尺寸自动调整其位置和大小。弹性布局可以让元素在水平和垂直方向上自
+  // 动调整，以便更好地适应不同的屏幕尺寸和设备
+  display: flex;
+  min-width: 1024px;
+  max-width: 1920px;
+  margin: 0auto;
+  padding: 0.125rem 0.125rem 0;
+  .column{
+    position: relative;
+    flex: 2;
+    //将.column子元素的弹性增长因子（flex grow factor）设置为3。这意味着在父容器（.mainbox）中，
+    // .column元素将会占据更多的空间
+    &:nth-child(1){
+
+      flex: 8.5;
+      margin: 0 0.125rem 0.1875rem;
+
+    }
+    .baidu{
+      position: absolute;
+      height: 8.15rem;
+      width: 72%;
+      top: 0.1rem;
+      left: 26.5%;
+      border: 0.1px solid rgba(2,166,181,0.4) ;
+
+    }
+    #bingtu{
+      position: absolute;
+      left: 36%;
+      //right: 40%;
+      bottom: 0%;
+    }
+    #suibian{
+      position: absolute;
+      //left: 69.5%;
+      width: 4.5rem;
+      right: 1.3%;
+      bottom: 0%;
+    }
+    .panel{
+      flex-direction: column;
+      position: relative;
+      width: 4.5rem;
+      height: 4rem;
+      //padding: 0 0.1875rem 0.5rem;//padding用于设置元素的内边距,内边距是元素内容与边框之间的空白区域
+      margin-bottom: 0.25rem;//margin用于设置元素底部的外边距,外边距是元素与相邻元素之间的空白区域
+      background-color: green;
+      border: 1px solid rgba(25,186,139,0.17);
+      background: url("/static/images/line(1).png") rgba(255,255,255,0.04);
+      &:nth-child(1){
+        height: 4rem;
+      }
+
+        &::before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: "";
+          width: 20px;
+          height: 20px;
+          border-top: 2px solid #02a6b5;
+          border-left: 2px solid #02a6b5;
+        }
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          content: "";
+          width: 20px;
+          height: 20px;
+          border-top: 2px solid #02a6b5;
+          border-right: 2px solid #02a6b5;
+        }
+      .panel-footer{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        &::before {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          content: "";
+          width: 20px;
+          height: 20px;
+          border-bottom: 2px solid #02a6b5;
+          border-left: 2px solid #02a6b5;
+        }
+        &::after {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          content: "";
+          width: 20px;
+          height: 20px;
+          border-bottom: 2px solid #02a6b5;
+          border-right: 2px solid #02a6b5;
+        }
+      }
+    h2{
+      background:  rgba(22,101,140,0.5);
+      position: relative;
+      height: 0.55rem;
+      color: white;
+      line-height: 0.55rem;
+      text-align: center;
+      font-size: 0.25rem;
+      font-weight: 700;
+      font-family: 微软雅黑;
+      //&::after{
+      //  position: absolute;
+      //    bottom: 0;
+      //    right: 0;
+      //    content: "";
+      //    width: 60%;
+      //  left: 20%;
+      //  bottom: 5%;
+      //    border-bottom: 1px solid #02a6b5;
+
+      //}
+    }
+    .chart{
+      height: 3.7rem;
+    }
+    .gun{
+        height: 0.35rem;
+        position: relative;
+        display: flex;
+        //justify-content: space-around;
+        margin-top: 0.1rem;
+        //margin-bottom: 0.35rem;
+        font-size: 0.15rem;
+        color: #00f7de;
+        font-family: 微软雅黑;
+        font-weight: bold;
+        width: 100%;
+        float: left;
+        span{
+          //line-height（行高）文本的高度，height（高度）元素的高度
+          //如果文本行的高度小于 line-height 的值，会根据 vertical-align 属性进行对齐
+          height: 0.2rem;
+          &:nth-child(1){
+            position: absolute;
+            left: 6%;
+          }
+          &:nth-child(2){
+            position: absolute;
+            left: 37%;
+          }
+          &:nth-child(3){
+            position: absolute;
+            left: 58%;
+          }
+          &:nth-child(4){
+            position: absolute;
+            left: 80%;
+          }
+
+        }
+      }
+    }
+   }
+  }
+.table{
+  height: 3.3rem;
+  .myscroll{
+    height: 2.75rem;
+  }
+  h2{
+
+      background:  rgba(22,101,140,0.5);
+      position: relative;
+      height: 0.55rem;
+      color: white;
+      line-height: 0.55rem;
+      text-align: center;
+      font-size: 0.25rem;
+      font-weight: 700;
+      font-family: 微软雅黑;
+      //&::after{
+      //  position: absolute;
+      //    bottom: 0;
+      //    right: 0;
+      //    content: "";
+      //    width: 60%;
+      //  left: 20%;
+      //  bottom: 5%;
+      //    border-bottom: 1px solid #02a6b5;
+
+      //}
+    }
+  .gun{
+
+        height: 0.35rem;
+        position: relative;
+        display: flex;
+        //justify-content: space-around;
+        margin-top: 0.1rem;
+        //margin-bottom: 0.35rem;
+        font-size: 0.2rem;
+        color: #00f7de;
+        font-family: 微软雅黑;
+        font-weight: bold;
+        width: 100%;
+        float: left;
+        span{
+          //line-height（行高）文本的高度，height（高度）元素的高度
+          //如果文本行的高度小于 line-height 的值，会根据 vertical-align 属性进行对齐
+          height: 0.2rem;
+          &:nth-child(1){
+            position: absolute;
+            left: 5.8%;
+          }
+          &:nth-child(2){
+            position: absolute;
+            left: 33.5%;
+          }
+          &:nth-child(3){
+            position: absolute;
+            left: 57%;
+          }
+          &:nth-child(4){
+            position: absolute;
+            left: 78.5%;
+          }
+        }
+      }
+}
+//.FontScroll 表示选择具有 class="FontScroll" 的元素，而 #FontScroll 表示选择具有 id="FontScroll" 的元素
+#FontScroll1{
+  width: 100%;
+  height: 2.8rem;
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;//这个是保证让ul在Fontscroll里滚动的关键
+
+}
+
+#FontScroll1 ul li{
+  margin-bottom: 0.15rem;
+  height: 0.4rem;
+  line-height: 0.25rem;
+  .fontInner {
+
+    height: 0.4rem;
+  display: flex; /* 设置为 Flex 容器 */
+   align-items: center; /* 子元素均匀分布在一行 */
+}
+
+.fontInner span,
+.fontInner div {
+  vertical-align: center;//让子元素垂直居中对齐
+  &:nth-child(1){
+    position: absolute;
+            left: 6%;
+  }
+  &:nth-child(2){
+    position: absolute;
+            left: 43%;
+  }
+  &:nth-child(3){
+    position: absolute;
+            left: 64%;
+  }
+  &:nth-child(4){
+    position: absolute;
+            left: 83.5%;
+  }
+
+   /* 让每个子元素平均占据一行的宽度 */
+   /* 居中对齐文本 */
+  font-size: 0.15rem;
+  font-weight: 700;
+  color: white;
+  /* 可以根据需要添加其他样式属性 */
+}
+
+}
+//#FontScroll ul li:nth-child(1){
+//    /*background-color: #072951;*/
+//    box-shadow: -10px 0px 15px #034c6a inset, /*左边阴影*/
+//    10px 0px 15px #034c6a inset;
+//
+//}
+
+#FontScroll1 ul li:hover{//这是一个伪类选择器，它表示选中元素在鼠标悬停时应用的样式
+    box-shadow: -10px 0px 15px #034c6a inset, /*左边阴影*/
+    10px 0px 15px #034c6a inset;
+    cursor: pointer;
+}
+//****************
+#FontScroll2{
+  width: 100%;
+  height: 2.2rem;
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;//这个是保证让ul在Fontscroll里滚动的关键
+
+}
+
+#FontScroll2 ul li{
+  margin-bottom: 0.15rem;
+  height: 0.4rem;
+  line-height: 0.25rem;
+  .fontInner {
+
+    height: 0.4rem;
+  display: flex; /* 设置为 Flex 容器 */
+   align-items: center; /* 子元素均匀分布在一行 */
+}
+
+.fontInner span,
+.fontInner div {
+  vertical-align: center;//让子元素垂直居中对齐
+  &:nth-child(1){
+    position: absolute;
+            left: 5.8%;
+  }
+  &:nth-child(2){
+    position: absolute;
+            left: 37.5%;
+  }
+  &:nth-child(3){
+    position: absolute;
+            left: 60%;
+  }
+  &:nth-child(4){
+    position: absolute;
+            left: 82.5%;
+  }
+   /* 让每个子元素平均占据一行的宽度 */
+   /* 居中对齐文本 */
+  font-size: 0.18rem;
+  font-weight: 700;
+  color: white;
+  /* 可以根据需要添加其他样式属性 */
+}
+
+}
+//#FontScroll ul li:nth-child(1){
+//    /*background-color: #072951;*/
+//    box-shadow: -10px 0px 15px #034c6a inset, /*左边阴影*/
+//    10px 0px 15px #034c6a inset;
+//
+//}
+
+#FontScroll2 ul li:hover{//这是一个伪类选择器，它表示选中元素在鼠标悬停时应用的样式
+    box-shadow: -10px 0px 15px #034c6a inset, /*左边阴影*/
+    10px 0px 15px #034c6a inset;
+    cursor: pointer;
+}
+//中间的人数，数字部分
+.information1{
+  padding-top: 10px;
+    width: 100%;
+    display: flex;
+    height: 1.25rem;
+
+    .minlogo{
+    position: relative;
+    flex: 2;
+    &:nth-child(1){
+      background: url("/static/images/logo1.png") no-repeat;
+      background-size: 45%;
+      left: 0.5rem;
+      top: 5%;
+    }
+
+    ul{
+      position: absolute;
+      top: 5%;
+      display: flex;
+      flex-direction: column;
+      li{
+        flex: 1;
+        font-size:0.5rem ;
+        color: white;
+        text-align: center;
+        font-family: 'electronicFont';
+        &:nth-child(1){
+          font-size: 0.4rem;
+          font-family: 黑体;
+          color: #ffeb7b;
+        }
+      }
+
+    }
+
+    }
+}
+.information2{
+  padding-top: 10px;
+    width: 100%;
+    display: flex;
+    height: 1.25rem;
+
+    .minlogo{
+    position: relative;
+    flex: 2;
+    &:nth-child(1){
+      background: url("/static/images/项目.png") no-repeat;
+      background-size: 50%;
+      left: 0.4rem;
+      top: 0.1rem;
+    }
+
+    ul{
+      position: absolute;
+      top: 5%;
+      display: flex;
+      flex-direction: column;
+      li{
+        flex: 1;
+        font-size:0.5rem ;
+        color: white;
+        text-align: center;
+        font-family: 'electronicFont';
+        &:nth-child(1){
+          font-size: 0.4rem;
+          font-family: 黑体;
+          color: #ffeb7b;
+        }
+      }
+
+    }
+
+    }
+}
+.information3{
+  padding-top: 10px;
+    width: 100%;
+    display: flex;
+    height: 1.25rem;
+
+    .minlogo{
+    position: relative;
+    flex: 2;
+    &:nth-child(1){
+      background: url("/static/images/设备.png") no-repeat;
+      background-size: 50%;
+      left: 0.5rem;
+      top: 0.2rem;
+    }
+
+    ul{
+      position: absolute;
+      top: 5%;
+      display: flex;
+      flex-direction: column;
+      li{
+        flex: 1;
+        font-size:0.5rem ;
+        color: white;
+        text-align: center;
+        font-family: 'electronicFont';
+        &:nth-child(1){
+          font-size: 0.4rem;
+          font-family: 黑体;
+          color: #ffeb7b;
+        }
+      }
+
+    }
+
+    }
+}
+.shebei-chart{
+  position: relative;
+  width: 6.5rem;
+  height: 3.3rem;
+  //background-color: yellow;
+  background-color: rgba(7,69,108,0.4);
+  &::before {
+          position: absolute;
+          top: 0;
+          left: 0;
+          content: "";
+          width: 20px;
+          height: 20px;
+          border-top: 2px solid #02a6b5;
+          border-left: 2px solid #02a6b5;
+        }
+        &::after {
+          position: absolute;
+          top: 0;
+          right: 0;
+          content: "";
+          width: 20px;
+          height: 20px;
+          border-top: 2px solid #02a6b5;
+          border-right: 2px solid #02a6b5;
+        }
+      .panel-footer{
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 100%;
+        &::before {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          content: "";
+          width: 20px;
+          height: 20px;
+          border-bottom: 2px solid #02a6b5;
+          border-left: 2px solid #02a6b5;
+        }
+        &::after {
+          position: absolute;
+          bottom: 0;
+          right: 0;
+          content: "";
+          width: 20px;
+          height: 20px;
+          border-bottom: 2px solid #02a6b5;
+          border-right: 2px solid #02a6b5;
+        }
+      }
+  .img{
+    position: absolute;
+    top: 3%;
+    left: 0.2rem;
+    border:2px solid rgba(45,147,202,0.5);
+    background: url("/static/images/设备状态.png") no-repeat;
+    background-size: 80%;
+    background-position: 50% 50%;
+    height: 75%;
+    width: 1.75rem;
+
+    span{
+      position: absolute;
+      height: 0.6rem;
+      color: greenyellow;
+      line-height: 0.6rem;
+      font-size: 0.25rem;
+      font-weight: 50;
+      font-family: 黑体;
+      top: 1.7rem;
+      left: 0.26rem;
+      animation: glow 2.5s infinite alternate;
+      @keyframes glow {
+      0%, 100% {
+        color: red;
+        text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+      }
+      50% {
+        color: green;
+        text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+      }
+      75% {
+        color: yellow;
+        text-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+      }
+    }
+
+    /* 如果需要无限循环动画 */
+    @keyframes glow-infinite {
+      0%, 100% {
+        color: red;
+        text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+      }
+      50% {
+        color: green;
+        text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+      }
+      75% {
+        color: yellow;
+        text-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+      }
+    }
+
+    }
+  }
+table {
+
+      border-collapse: collapse; /* 合并边框，使表格线连续 */
+      width: 88%;
+  right: 1%;
+  top: 4%;
+  height: 94%;
+  position: absolute;
+    }
+
+    th, td {
+      #zaixian{
+        display: block;
+        width: 30%;
+        height: 30%;
+
+      }
+      font-size:0.23rem ;
+      font-family: 'electronicFont';
+      color: white;
+      border: 1px solid #02a6b5; /* 设置单元格边框样式 */
+      padding: 8px; /* 设置单元格内边距 */
+      text-align: center; /* 居中显示单元格内容 */
+      vertical-align: middle;
+    }
+
+    th {
+
+      background-color: #072951;
+      box-shadow: -10px 0px 15px #2C58A6 inset,/*左边阴影*/10px 0px 15px #2C58A6 inset;
+      //background-color: lightskyblue;
+      vertical-align: middle;/* 设置表头背景色 */
+    }
+
+}

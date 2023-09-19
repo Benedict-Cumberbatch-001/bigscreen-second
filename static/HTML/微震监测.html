@@ -7,11 +7,198 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="/static/js/echarts.js"></script>
+    <script src="/static/js/flexible.js"></script>
     <link href="/static/css/layui.css" rel="stylesheet">
 </head>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    h1{
+        width: 100%;
+        height: 0.5rem;
+         text-align: center;
+        margin-top: 0.5rem;
+        margin-bottom: 0.2rem;
+        font-family: 微软雅黑;
+        font-weight: bold;
+        font-size: 0.3rem;
+    }
+    ul{
+        text-align: center;
+    }
+    .box {
+        position: relative;
+        display: flex;
+        height: 12rem;
+        width: 21.25rem;
+    }
+    .switch{
+        height: 20%;
+        width: 100%;
+    }
+    .daohang{
+        position: absolute;
+        width: 100%;
+    }
+    .mictable{
+        width: 100%;
+        height: 9rem;
+        position: absolute;
+        top:18%;
+        display: none;
+
+    }
+    #data-collection{
+        background-color: red;
+    }
+    #parameter-setting{
+        background-color: green;
+    }
+    #data-analysis{
+        background-color: yellow;
+    }
+    #Microseismic-location{
+        background-color: blue;
+    }
+    #Intelligent-early-warning{
+        background-color: orange;
+    }
+</style>
 <body>
-<div>
-<h1>这里是微震检测页面</h1>
+
+
+
+<div class="box" >
+    <div class="switch">
+    <h1>这里是微震检测页面</h1>
+    <div class="layui-tab layui-tab-brief" >
+      <ul class="layui-tab-title">
+        <li class="layui-this" style="width: 2rem">数据采集</li>
+        <li style="width: 2rem">参数设置</li>
+        <li style="width: 2rem">数据分析</li>
+        <li style="width: 2rem">微震定位</li>
+        <li style="width: 2rem">智能预警</li>
+      </ul>
+      <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">内容-1</div>
+        <div class="layui-tab-item">内容-2</div>
+        <div class="layui-tab-item">
+            <div class="layui-card layui-panel" >
+            <table class="layui-hide" id="ID-table-demo-page"></table>
+            <script type="text/html" id="ID-table-demo-page-pagebar">
+            <div class="layui-btn-container">
+                <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn1">底部按钮1</button>
+                <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn2">底部按钮2</button>
+            </div>
+            </script>
+          </div>
+        </div>
+        <div class="layui-tab-item">内容-4</div>
+        <div class="layui-tab-item">内容-5</div>
+      </div>
+    </div>
+
+    </div>
+    <div class="mictable"  id="data-collection"></div>
+
+    <div class="mictable"  id="parameter-setting"></div>
+
+    <div class="mictable"  id="data-analysis">
+
+    </div>
+
+    <div class="mictable"  id="Microseismic-location"></div>
+
+    <div class="mictable"  id="Intelligent-early-warning"></div>
+
+    <div class="mictable"  id="Undetermined-option"></div>
+
+
 </div>
+
 </body>
+<script src="/static/js/layui.js"></script>
+<script>
+function showModule(moduleId) {
+  var modules1 = document.getElementsByClassName('table');
+  var modules2=document.getElementsByClassName('layui-card layui-panel');
+
+  //var table=document.getElementById('table1')
+      //table.style.display='none';
+  //先消除每个元素的activve类
+  for (var i = 0; i < modules1.length; i++) {
+    modules1[i].style.display='none';
+  }
+  for (var i = 0; i < modules2.length; i++) {
+    modules2[i].style.display='none';
+  }
+  //增加点击按钮元素的active类
+
+  document.getElementById(moduleId).style.display='block';
+  console.log(document.getElementById(moduleId).className)
+  // 隐藏表格区域
+  console.log('showmodule已运行')//相当于print（）
+
+  //tableContainer.style.display = 'none';
+}
+
+layui.use('table', function(){
+  var table = layui.table;
+  // 加载table实例
+  var inst =table.render({
+    elem: '#ID-table-demo-page',
+    url:'/static/12.json', // 此处为静态模拟数据，实际使用时需换成真实接口，数据接口
+    page: { // 支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+      limit:15,
+      limits: [5, 10, 15,20],
+
+      layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
+      //curr: 1, //设定初始在第 5 页
+      groups: 1, //只显示 1 个连续页码
+      first: false, //不显示首页
+      last: false //不显示尾页
+    },
+    pagebar: '#ID-table-demo-page-pagebar', // 分页栏模板
+    cols: [[
+      {field:'id', minwidth:150, title: '设备ID', sort: true},
+      {field:'cumulative displacement', minwidth:150, title: '累积位移',sort: true},
+      {field:'shift within 24 hours', minwidth:150, title: '24h内位移量', sort: true},
+      {field:'lastest time', minwidth:150, title: '最近一次检测时间',sort: true},
+      {field:'deformation velocity', minwidth:150,  title: '变形速度',sort: true},
+      {field:'safety', minwidth:150,  title: '安全状态',sort: true},
+      {field:'alarm frequency', minwidth:150, title: '报警次数', sort: true}
+    ]],
+    parseData: function(res){ //将原始数据解析成 table 组件所规定的数据，res为从url中get到的数据
+	    var result;
+
+	    //(前端来实现)分页方法一：
+	    //这是前台 用res.data接受全部数据 再根据当前页的条件从全部数据中选取一部分数据显示出来
+	    if(this.page.curr){
+	        //若为第二页 则curr为2 页面显示的数据就是从res.data集合数组里的 （2-1）*limit（10）=10 到 limit（10）*2=20的数据
+	        result = res.data.slice(this.limit*(this.page.curr-1),this.limit*this.page.curr);
+	    }
+	    else{
+	        // 一开始就是第一页 则就是 显示的数据就是从res.data集合数组里的0到limit（10）中
+	        result=res.data.slice(0,this.limit);
+	    }
+	     return {
+	        "code": 0, //解析接口状态
+	        "msg": res.msg, //解析提示文本
+	        "count": res.count, //解析数据长度
+	        "data": result //解析数据列表
+	    };
+	},
+
+  });
+  // 底部分页栏事件
+  table.on('pagebar(ID-table-demo-page)', function(obj){
+    var eventValue = obj.event; // 获得按钮 lay-event 值
+    layer.msg(eventValue);
+  });
+
+});
+</script>
 </html>

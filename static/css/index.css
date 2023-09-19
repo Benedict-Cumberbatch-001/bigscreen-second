@@ -1,0 +1,595 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+li {
+  list-style: none;
+}
+/* 声明字体*/
+@font-face {
+  font-family: electronicFont;
+  src: url("/static/font/DS-DIGIT.TTF");
+}
+body {
+  overflow-y: hidden;
+  background: url("/static/images/bg.jpg") no-repeat top center;
+}
+header {
+  position: relative;
+  height: 1.5rem;
+  background: url("/static/images/header.png") no-repeat;
+  background-size: 98.5%;
+  /* 调整图片大小，cover会自动缩放图片使其填满背景区域 */
+  background-position: bottom;
+}
+header .logo {
+  background: url("/static/images/logo.svg") no-repeat;
+  position: absolute;
+  background-size: 100%;
+  width: 2.5rem;
+  height: 2.5rem;
+  top: 0.3rem;
+  left: 1.5rem;
+}
+header .head .head-gif {
+  background: url("/static/images/title_border.png") no-repeat center center;
+  background-size: 60%;
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0.1rem;
+}
+header .head h1 {
+  font-size: 0.5rem;
+  font-family: 黑体;
+  font-weight: 800;
+  color: white;
+  position: absolute;
+  line-height: 1rem;
+  top: 12%;
+  left: 36%;
+}
+header .showTime {
+  font-size: 0.2rem;
+  position: absolute;
+  right: 0.375rem;
+  line-height: 0.9375rem;
+  color: rgba(255, 255, 255, 0.8);
+  top: 15%;
+}
+.mainbox {
+  display: flex;
+  min-width: 1024px;
+  max-width: 1920px;
+  margin: 0auto;
+  padding: 0.125rem 0.125rem 0;
+}
+.mainbox .column {
+  position: relative;
+  flex: 2;
+}
+.mainbox .column:nth-child(1) {
+  flex: 8.5;
+  margin: 0 0.125rem 0.1875rem;
+}
+.mainbox .column .baidu {
+  position: absolute;
+  height: 8.15rem;
+  width: 72%;
+  top: 0.1rem;
+  left: 26.5%;
+  border: 0.1px solid rgba(2, 166, 181, 0.4);
+}
+.mainbox .column #bingtu {
+  position: absolute;
+  left: 36%;
+  bottom: 0%;
+}
+.mainbox .column #suibian {
+  position: absolute;
+  width: 4.5rem;
+  right: 1.3%;
+  bottom: 0%;
+}
+.mainbox .column .panel {
+  flex-direction: column;
+  position: relative;
+  width: 4.5rem;
+  height: 4rem;
+  margin-bottom: 0.25rem;
+  background-color: green;
+  border: 1px solid rgba(25, 186, 139, 0.17);
+  background: url("/static/images/line(1).png") rgba(255, 255, 255, 0.04);
+}
+.mainbox .column .panel:nth-child(1) {
+  height: 4rem;
+}
+.mainbox .column .panel::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #02a6b5;
+  border-left: 2px solid #02a6b5;
+}
+.mainbox .column .panel::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #02a6b5;
+  border-right: 2px solid #02a6b5;
+}
+.mainbox .column .panel .panel-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.mainbox .column .panel .panel-footer::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #02a6b5;
+  border-left: 2px solid #02a6b5;
+}
+.mainbox .column .panel .panel-footer::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #02a6b5;
+  border-right: 2px solid #02a6b5;
+}
+.mainbox .column .panel h2 {
+  background: rgba(22, 101, 140, 0.5);
+  position: relative;
+  height: 0.55rem;
+  color: white;
+  line-height: 0.55rem;
+  text-align: center;
+  font-size: 0.25rem;
+  font-weight: 700;
+  font-family: 微软雅黑;
+}
+.mainbox .column .panel .chart {
+  height: 3.7rem;
+}
+.mainbox .column .panel .gun {
+  height: 0.35rem;
+  position: relative;
+  display: flex;
+  margin-top: 0.1rem;
+  font-size: 0.15rem;
+  color: #00f7de;
+  font-family: 微软雅黑;
+  font-weight: bold;
+  width: 100%;
+  float: left;
+}
+.mainbox .column .panel .gun span {
+  height: 0.2rem;
+}
+.mainbox .column .panel .gun span:nth-child(1) {
+  position: absolute;
+  left: 6%;
+}
+.mainbox .column .panel .gun span:nth-child(2) {
+  position: absolute;
+  left: 37%;
+}
+.mainbox .column .panel .gun span:nth-child(3) {
+  position: absolute;
+  left: 58%;
+}
+.mainbox .column .panel .gun span:nth-child(4) {
+  position: absolute;
+  left: 80%;
+}
+.table {
+  height: 3.3rem;
+}
+.table .myscroll {
+  height: 2.75rem;
+}
+.table h2 {
+  background: rgba(22, 101, 140, 0.5);
+  position: relative;
+  height: 0.55rem;
+  color: white;
+  line-height: 0.55rem;
+  text-align: center;
+  font-size: 0.25rem;
+  font-weight: 700;
+  font-family: 微软雅黑;
+}
+.table .gun {
+  height: 0.35rem;
+  position: relative;
+  display: flex;
+  margin-top: 0.1rem;
+  font-size: 0.2rem;
+  color: #00f7de;
+  font-family: 微软雅黑;
+  font-weight: bold;
+  width: 100%;
+  float: left;
+}
+.table .gun span {
+  height: 0.2rem;
+}
+.table .gun span:nth-child(1) {
+  position: absolute;
+  left: 5.8%;
+}
+.table .gun span:nth-child(2) {
+  position: absolute;
+  left: 33.5%;
+}
+.table .gun span:nth-child(3) {
+  position: absolute;
+  left: 57%;
+}
+.table .gun span:nth-child(4) {
+  position: absolute;
+  left: 78.5%;
+}
+#FontScroll1 {
+  width: 100%;
+  height: 2.8rem;
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;
+}
+#FontScroll1 ul li {
+  margin-bottom: 0.15rem;
+  height: 0.4rem;
+  line-height: 0.25rem;
+}
+#FontScroll1 ul li .fontInner {
+  height: 0.4rem;
+  display: flex;
+  /* 设置为 Flex 容器 */
+  align-items: center;
+  /* 子元素均匀分布在一行 */
+}
+#FontScroll1 ul li .fontInner span,
+#FontScroll1 ul li .fontInner div {
+  vertical-align: center;
+  /* 让每个子元素平均占据一行的宽度 */
+  /* 居中对齐文本 */
+  font-size: 0.15rem;
+  font-weight: 700;
+  color: white;
+  /* 可以根据需要添加其他样式属性 */
+}
+#FontScroll1 ul li .fontInner span:nth-child(1),
+#FontScroll1 ul li .fontInner div:nth-child(1) {
+  position: absolute;
+  left: 6%;
+}
+#FontScroll1 ul li .fontInner span:nth-child(2),
+#FontScroll1 ul li .fontInner div:nth-child(2) {
+  position: absolute;
+  left: 43%;
+}
+#FontScroll1 ul li .fontInner span:nth-child(3),
+#FontScroll1 ul li .fontInner div:nth-child(3) {
+  position: absolute;
+  left: 64%;
+}
+#FontScroll1 ul li .fontInner span:nth-child(4),
+#FontScroll1 ul li .fontInner div:nth-child(4) {
+  position: absolute;
+  left: 83.5%;
+}
+#FontScroll1 ul li:hover {
+  box-shadow: -10px 0px 15px #034c6a inset, /*左边阴影*/ 10px 0px 15px #034c6a inset;
+  cursor: pointer;
+}
+#FontScroll2 {
+  width: 100%;
+  height: 2.2rem;
+  margin-top: 10px;
+  overflow: hidden;
+  position: relative;
+}
+#FontScroll2 ul li {
+  margin-bottom: 0.15rem;
+  height: 0.4rem;
+  line-height: 0.25rem;
+}
+#FontScroll2 ul li .fontInner {
+  height: 0.4rem;
+  display: flex;
+  /* 设置为 Flex 容器 */
+  align-items: center;
+  /* 子元素均匀分布在一行 */
+}
+#FontScroll2 ul li .fontInner span,
+#FontScroll2 ul li .fontInner div {
+  vertical-align: center;
+  /* 让每个子元素平均占据一行的宽度 */
+  /* 居中对齐文本 */
+  font-size: 0.18rem;
+  font-weight: 700;
+  color: white;
+  /* 可以根据需要添加其他样式属性 */
+}
+#FontScroll2 ul li .fontInner span:nth-child(1),
+#FontScroll2 ul li .fontInner div:nth-child(1) {
+  position: absolute;
+  left: 5.8%;
+}
+#FontScroll2 ul li .fontInner span:nth-child(2),
+#FontScroll2 ul li .fontInner div:nth-child(2) {
+  position: absolute;
+  left: 37.5%;
+}
+#FontScroll2 ul li .fontInner span:nth-child(3),
+#FontScroll2 ul li .fontInner div:nth-child(3) {
+  position: absolute;
+  left: 60%;
+}
+#FontScroll2 ul li .fontInner span:nth-child(4),
+#FontScroll2 ul li .fontInner div:nth-child(4) {
+  position: absolute;
+  left: 82.5%;
+}
+#FontScroll2 ul li:hover {
+  box-shadow: -10px 0px 15px #034c6a inset, /*左边阴影*/ 10px 0px 15px #034c6a inset;
+  cursor: pointer;
+}
+.information1 {
+  padding-top: 10px;
+  width: 100%;
+  display: flex;
+  height: 1.25rem;
+}
+.information1 .minlogo {
+  position: relative;
+  flex: 2;
+}
+.information1 .minlogo:nth-child(1) {
+  background: url("/static/images/logo1.png") no-repeat;
+  background-size: 45%;
+  left: 0.5rem;
+  top: 5%;
+}
+.information1 .minlogo ul {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.information1 .minlogo ul li {
+  flex: 1;
+  font-size: 0.5rem;
+  color: white;
+  text-align: center;
+  font-family: 'electronicFont';
+}
+.information1 .minlogo ul li:nth-child(1) {
+  font-size: 0.4rem;
+  font-family: 黑体;
+  color: #ffeb7b;
+}
+.information2 {
+  padding-top: 10px;
+  width: 100%;
+  display: flex;
+  height: 1.25rem;
+}
+.information2 .minlogo {
+  position: relative;
+  flex: 2;
+}
+.information2 .minlogo:nth-child(1) {
+  background: url("/static/images/项目.png") no-repeat;
+  background-size: 50%;
+  left: 0.4rem;
+  top: 0.1rem;
+}
+.information2 .minlogo ul {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.information2 .minlogo ul li {
+  flex: 1;
+  font-size: 0.5rem;
+  color: white;
+  text-align: center;
+  font-family: 'electronicFont';
+}
+.information2 .minlogo ul li:nth-child(1) {
+  font-size: 0.4rem;
+  font-family: 黑体;
+  color: #ffeb7b;
+}
+.information3 {
+  padding-top: 10px;
+  width: 100%;
+  display: flex;
+  height: 1.25rem;
+}
+.information3 .minlogo {
+  position: relative;
+  flex: 2;
+}
+.information3 .minlogo:nth-child(1) {
+  background: url("/static/images/设备.png") no-repeat;
+  background-size: 50%;
+  left: 0.5rem;
+  top: 0.2rem;
+}
+.information3 .minlogo ul {
+  position: absolute;
+  top: 5%;
+  display: flex;
+  flex-direction: column;
+}
+.information3 .minlogo ul li {
+  flex: 1;
+  font-size: 0.5rem;
+  color: white;
+  text-align: center;
+  font-family: 'electronicFont';
+}
+.information3 .minlogo ul li:nth-child(1) {
+  font-size: 0.4rem;
+  font-family: 黑体;
+  color: #ffeb7b;
+}
+.shebei-chart {
+  position: relative;
+  width: 6.5rem;
+  height: 3.3rem;
+  background-color: rgba(7, 69, 108, 0.4);
+}
+.shebei-chart::before {
+  position: absolute;
+  top: 0;
+  left: 0;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #02a6b5;
+  border-left: 2px solid #02a6b5;
+}
+.shebei-chart::after {
+  position: absolute;
+  top: 0;
+  right: 0;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid #02a6b5;
+  border-right: 2px solid #02a6b5;
+}
+.shebei-chart .panel-footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+.shebei-chart .panel-footer::before {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #02a6b5;
+  border-left: 2px solid #02a6b5;
+}
+.shebei-chart .panel-footer::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  content: "";
+  width: 20px;
+  height: 20px;
+  border-bottom: 2px solid #02a6b5;
+  border-right: 2px solid #02a6b5;
+}
+.shebei-chart .img {
+  position: absolute;
+  top: 3%;
+  left: 0.2rem;
+  border: 2px solid rgba(45, 147, 202, 0.5);
+  background: url("/static/images/设备状态.png") no-repeat;
+  background-size: 80%;
+  background-position: 50% 50%;
+  height: 75%;
+  width: 1.75rem;
+}
+.shebei-chart .img span {
+  position: absolute;
+  height: 0.6rem;
+  color: greenyellow;
+  line-height: 0.6rem;
+  font-size: 0.25rem;
+  font-weight: 50;
+  font-family: 黑体;
+  top: 1.7rem;
+  left: 0.26rem;
+  animation: glow 2.5s infinite alternate;
+  /* 如果需要无限循环动画 */
+}
+@keyframes glow {
+  0%,
+  100% {
+    color: red;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    color: green;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  }
+  75% {
+    color: yellow;
+    text-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+  }
+}
+@keyframes glow-infinite {
+  0%,
+  100% {
+    color: red;
+    text-shadow: 0 0 20px rgba(255, 0, 0, 0.8);
+  }
+  50% {
+    color: green;
+    text-shadow: 0 0 20px rgba(0, 255, 0, 0.8);
+  }
+  75% {
+    color: yellow;
+    text-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
+  }
+}
+.shebei-chart table {
+  border-collapse: collapse;
+  /* 合并边框，使表格线连续 */
+  width: 88%;
+  right: 1%;
+  top: 4%;
+  height: 94%;
+  position: absolute;
+}
+.shebei-chart th,
+.shebei-chart td {
+  font-size: 0.23rem;
+  font-family: 'electronicFont';
+  color: white;
+  border: 1px solid #02a6b5;
+  /* 设置单元格边框样式 */
+  padding: 8px;
+  /* 设置单元格内边距 */
+  text-align: center;
+  /* 居中显示单元格内容 */
+  vertical-align: middle;
+}
+.shebei-chart th #zaixian,
+.shebei-chart td #zaixian {
+  display: block;
+  width: 30%;
+  height: 30%;
+}
+.shebei-chart th {
+  background-color: #072951;
+  box-shadow: -10px 0px 15px #2C58A6 inset, /*左边阴影*/ 10px 0px 15px #2C58A6 inset;
+  vertical-align: middle;
+  /* 设置表头背景色 */
+}
+/*# sourceMappingURL=index.css.map */
