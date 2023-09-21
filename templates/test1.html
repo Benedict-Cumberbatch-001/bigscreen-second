@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Sortable Table</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            cursor: pointer;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+<table id="sortableTable">
+    <thead>
+        <tr>
+            <th onclick="sortTable(0)">Name</th>
+            <th onclick="sortTable(1)">Age</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>Alice</td>
+            <td>25</td>
+        </tr>
+        <tr>
+            <td>Bob</td>
+            <td>30</td>
+        </tr>
+        <tr>
+            <td>Charlie</td>
+            <td>22</td>
+        </tr>
+        <!-- 添加更多数据行 -->
+    </tbody>
+</table>
+
+<script>
+    let sortOrder = 1; // 初始排序顺序（1为升序，-1为降序）
+
+    function sortTable(columnIndex) {
+        const table = document.getElementById("sortableTable");
+        const tbody = table.getElementsByTagName("tbody")[0];
+        const rows = tbody.getElementsByTagName("tr");
+        const arr = [];
+
+        for (let i = 0; i < rows.length; i++) {
+            const cellValue = rows[i].getElementsByTagName("td")[columnIndex].textContent;
+            arr.push({ index: i, value: cellValue });
+        }
+
+        arr.sort((a, b) => {
+            return sortOrder * a.value.localeCompare(b.value);
+        });
+
+        for (let i = 0; i < arr.length; i++) {
+            tbody.appendChild(rows[arr[i].index]);
+        }
+
+        sortOrder *= -1; // 切换排序顺序
+    }
+</script>
+
+</body>
+</html>
+

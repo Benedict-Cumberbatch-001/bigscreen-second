@@ -3,74 +3,117 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="/static/css/layui.css" rel="stylesheet">
   <title>Demo</title>
   <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
-  <link href="/static/css/layui.css" rel="stylesheet">
 </head>
-<body class="layui-padding-3">
+<body >
+<table class="layui-table">
+  <thead>
+    <tr>
+      <th>列1</th>
+      <th>列2</th>
+      <!-- 添加更多表格列 -->
+      <th>图表</th> <!-- 这是要嵌入图表的单元格 -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>数据1</td>
+      <td>数据2</td>
+      <!-- 添加更多数据列 -->
+      <td>
+        <div id="contain" style="width: 300px; height: 200px;"></div>
+        <!-- 使用一个具有唯一ID的div来容纳图表 -->
+      </td>
+    </tr>
+    <!-- 添加更多表格行 -->
+  </tbody>
+</table>
 
-<table class="layui-hide" id="ID-table-demo-data"></table>
 
 <!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
-<script src="/static/js/layui.js"></script>
-<script>
-layui.use('table', function(){
-  var table = layui.table;
 
-  // 已知数据渲染
-  var inst = table.render({
-
-    elem: '#ID-table-demo-data',
-      url:'/static/12.json',
-    cols: [[ //标题栏
-      {field: 'id', title: 'ID', width: 80, sort: true},
-      {field: 'username', title: '用户', width: 120},
-      {field: 'sign', title: '签名', Width: 120},
-      {field: 'sex', title: '性别', width: 80},
-      {field: 'city', title: '城市', width: 100},
-      {field: 'experience', title: '积分', width: 80, sort: true}
-    ]],
-
-    //skin: 'line', // 表格风格
-    //even: true,
-    page: { // 支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
-      limit:5,
-        //limits: [5, 10, 15],
-      layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'], //自定义分页布局
-      //curr: 1, //设定初始在第 5 页
-      groups: 1, //只显示 1 个连续页码
-      first: false, //不显示首页
-      last: false //不显示尾页
-    },
-
-
-	//分页操作：
-	parseData: function(res){ //将原始数据解析成 table 组件所规定的数据，res为从url中get到的数据
-	    var result;
-
-	    //(前端来实现)分页方法一：
-	    //这是前台 用res.data接受全部数据 再根据当前页的条件从全部数据中选取一部分数据显示出来
-	    if(this.page.curr){
-	        //若为第二页 则curr为2 页面显示的数据就是从res.data集合数组里的 （2-1）*limit（10）=10 到 limit（10）*2=20的数据
-	        result = res.data.slice(this.limit*(this.page.curr-1),this.limit*this.page.curr);
-	    }
-	    else{
-	        // 一开始就是第一页 则就是 显示的数据就是从res.data集合数组里的0到limit（10）中
-	        result=res.data.slice(0,this.limit);
-	    }
-	     return {
-	        "code": 0, //解析接口状态
-	        "msg": res.msg, //解析提示文本
-	        "count": res.count, //解析数据长度
-	        "data": result //解析数据列表
-	    };
-	},
-  });
-
-
-});
-</script>
 
 
 </body>
+<script src="/static/js/layui.js"></script>
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/echarts.js"></script>
+
+<script>
+
+var weizhen=echarts.init(document.getElementById('contain'));
+$.get('/static/aqi-beijing.json', function (data) {
+    console.log('dafdsf')
+        weizhen.setOption(
+            (option = {
+                backgroundColor: 'yellow',
+                title: {
+                    text: '微震监测数据/年月日',
+                    left: '1%'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                grid: {
+                    left: '5%',
+                    right: '15%',
+                    bottom: '10%',
+
+                },
+                xAxis: {
+                    data: data.map(function (item) {
+                        return item[0];
+                    })
+                },
+                yAxis: {},
+
+                dataZoom: [
+                    {
+                        startValue: '2014-06-01'
+                    },
+                    {
+                        type: 'inside'
+                    }
+                ],
+
+                series: {
+                    name: 'Beijing AQI',
+                    type: 'line',
+                    lineStyle: {
+                        color: 'red',
+                    },
+                    symbol: 'none',
+                    data: data.map(function (item) {
+                        return item[1];
+                    })
+                }
+            })
+        );
+    });
+    window.addEventListener("resize", function () {//echarts自带的能随着页面大小自动变化的函数
+        weizhen.resize();
+    });
+layui.use('table', function(){
+    console.log('fgfhrt')
+  var table = layui.table;
+
+  // 初始化表格
+
+  // 初始化ECharts图表
+
+  var chartContainer1 = document.getElementById('contain');
+  var myChart1 = echarts.init(chartContainer1);
+
+  // 定义图表配置项和数据
+  var option1 = {
+    // 在这里配置您的图表选项和数据
+  };
+
+  // 使用setOption方法将配置项应用到图表
+  myChart1.setOption(option1);
+});
+
+</script>
 </html>
