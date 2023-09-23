@@ -35,16 +35,6 @@
             <div id="data-analysis">
                 <!--左侧微震显示页面-->
                 <div class="column">
-                    <h2 style="text-align: center;font-size: 0.3rem;font-weight:500; font-family:黑体;border: 1px solid rgba(0,0,0,0.2) ;padding: 0.25rem ">微震监测传感器数据波形</h2>
-                    <div class="Microseismic-shape" id="sensor1"></div>
-                    <div class="Microseismic-shape" id="sensor2"></div>
-                    <div class="Microseismic-shape" id="sensor3"></div>
-                    <div class="Microseismic-shape" id="sensor4"></div>
-                    <div class="Microseismic-shape" id="sensor5"></div>
-                    <div class="Microseismic-shape" id="sensor6"></div>
-                </div>
-                <!--右侧功能页面-->
-                <div class="column">
                     <div class="layui-card layui-panel" >
                     <table class="layui-hide" id="ID-table-demo-page"></table>
                     <!--<script type="text/html" id="waveform" >
@@ -58,6 +48,16 @@
                     </div>
                     </script>
                     </div>
+                </div>
+                <!--右侧功能页面-->
+                <div class="column">
+                    <h2 style="text-align: center;font-size: 0.3rem;font-weight:500; font-family:黑体;border: 1px solid rgba(0,0,0,0.2) ;padding: 0.25rem ">微震监测传感器数据波形</h2>
+                    <div class="Microseismic-shape" id="sensor1"></div>
+                    <div class="Microseismic-shape" id="sensor2"></div>
+                    <div class="Microseismic-shape" id="sensor3"></div>
+                    <div class="Microseismic-shape" id="sensor4"></div>
+                    <div class="Microseismic-shape" id="sensor5"></div>
+                    <div class="Microseismic-shape" id="sensor6"></div>
                 </div>
             </div>
         </div>
@@ -131,7 +131,7 @@ layui.use('table', function() {
             {field: 'noise', width: 133.93, title: '是否含有噪声', sort: false},
             {field: 'p-wave arrival time', width: 118.6, title: 'P波到时', sort: false},
             {field: 's-wave arrival time', width: 118.6, title: 'S波到时', sort: false},
-            {field: 'time', width: 178.57, title: '时间', sort: false},
+            {field: 'time', width: 204.7, title: '时间', sort: false},
         ]],
         /*parseData: function(res){ //将原始数据解析成 table 组件所规定的数据，res为从url中get到的数据
 	    var result;
@@ -179,7 +179,7 @@ for (var i=0; i < sensors.length; i++) {
         $.get('/static/aqi-beijing.json', function (data) {
             sensor.setOption(
                 (option = {
-                    backgroundColor: 'yellow',
+                    backgroundColor: '#ffffcc',
                     title: {
                         show: false,
                         text: '年月日',

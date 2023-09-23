@@ -19,7 +19,7 @@ ul{
 .box {
     position: relative;
     display: flex;
-    height: 12rem;
+    height: 16.25rem;
     width: 21.25rem;
 }
 .switch{
@@ -48,14 +48,14 @@ ul{
     display: flex;
     width: 100%;
     .column{
-        flex: 2;
+        flex: 5;//这个是指每个column占多少份，可以理解为每个colimn占50%
         &:nth-child(1){
-            flex:5;
+            flex:5;//指第一个column占所有column的4.6fe
         }
         .Microseismic-shape{
         width: 10.5rem;
         height: 2.5rem;
-        background: yellow;
+        //background: rgb(255,255,204);
         outline: 1px solid rgba(0, 0, 0, 0.2);
 
         }

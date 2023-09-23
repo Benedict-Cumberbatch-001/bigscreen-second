@@ -19,7 +19,7 @@ ul {
 .box {
   position: relative;
   display: flex;
-  height: 12rem;
+  height: 16.25rem;
   width: 21.25rem;
 }
 .switch {
@@ -48,7 +48,7 @@ ul {
   width: 100%;
 }
 #data-analysis .column {
-  flex: 2;
+  flex: 5;
 }
 #data-analysis .column:nth-child(1) {
   flex: 5;
@@ -56,7 +56,6 @@ ul {
 #data-analysis .column .Microseismic-shape {
   width: 10.5rem;
   height: 2.5rem;
-  background: yellow;
   outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 #Microseismic-location {
