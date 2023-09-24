@@ -37,6 +37,20 @@
                 <div class="column">
                     <div class="layui-card layui-panel" >
                     <table class="layui-hide" id="ID-table-demo-page"></table>
+                    <!-- 数据类型选择 -->
+                    <script type="text/html" id="TPL-select-primary">
+                      {{#  var cityList = d.cityList || ["微震 1","汽笛 2","电流 3","爆破 4","噪声 5"]; }}
+                      <select name="type" class="layui-border select-demo-primary" lay-ignore>
+                        <option value="">初始值 -1</option>
+                        {{#  layui.each(cityList, function(i, v){ }}
+                        <option value="{{= v }}" {{= v === d.city ? 'selected' : '' }}>{{= v }}</option>
+                        {{#  }); }}
+                      </select>
+                    </script>
+                    <!-- 噪声状态开关 -->
+                    <script type="text/html" id="ID-table-demo-templet-switch">
+                      <input type="checkbox" name="noise" value="{{= d.id }}" title="有噪声|无噪声" lay-skin="switch" lay-filter="demo-templet-status" {{= d.id == 10001 ? "" : "" }}>
+                    </script>
                     <!--<script type="text/html" id="waveform" >
                         <div style="width: 500px;height: 300px;" id="weizhen"></div>
                          <img src="/static/image/pexels-amar-preciado-12663429.jpg" ></img>
@@ -83,9 +97,8 @@
 </body>
 <script src="/static/js/layui.js"></script>
 <script src="/static/js/jquery.js"></script>
-<!--layui实例化-->
 <script>
-function showModule(moduleId) {
+/*function showModule(moduleId) {
   var modules1 = document.getElementsByClassName('table');
   var modules2=document.getElementsByClassName('layui-card layui-panel');
 
@@ -106,8 +119,9 @@ function showModule(moduleId) {
   console.log('showmodule已运行')//相当于print（）
 
   //tableContainer.style.display = 'none';
-}
+}*/
 
+//实例化表格对象
 layui.use('table', function() {
     var table = layui.table;
     // 加载table实例
@@ -125,14 +139,40 @@ layui.use('table', function() {
             last: false //不显示尾页
         },
         pagebar: '#ID-table-demo-page-pagebar', // 分页栏模板
+        css: [ // 设置单元格样式
+              // 取消默认的溢出隐藏，并设置适当高度
+
+              '.layui-table-cell select{height:100%;  margin: 0 auto;}',
+              '.layui-table-cell .layui-form-switch{height:100%;  margin: 0 auto;}'
+            ].join(''),
         cols: [[
-            {field: 'id', width: 89.28, title: '传感器ID', sort: false},
-            {field: 'data type', width: 118.6, title: '数据类型', sort: false},
-            {field: 'noise', width: 133.93, title: '是否含有噪声', sort: false},
-            {field: 'p-wave arrival time', width: 118.6, title: 'P波到时', sort: false},
-            {field: 's-wave arrival time', width: 118.6, title: 'S波到时', sort: false},
-            {field: 'time', width: 204.7, title: '时间', sort: false},
+            {field: 'id', width: 130, title: '传感器ID', sort: false},
+            {field: 'data type', width: 133.93, title: '数据类型', sort: false,templet: '#TPL-select-primary'},
+            {field: 'noise', width: 133.93, title: '是否含有噪声', sort: false,templet: '#ID-table-demo-templet-switch'},
+            {field: 'p-wave arrival time', width: 133.93, title: 'P波到时', sort: false},
+            {field: 's-wave arrival time', width: 133.93, title: 'S波到时', sort: false},
+           // {field: 'time', width: 204.7, title: '时间', sort: false},
         ]],
+        done: function(res, curr, count){
+              var options = this;
+              // 获取当前行数据
+              table.getRowData = function(elem){
+                var index = $(elem).closest('tr').data('index');
+                return table.cache[options.id][index] || {};
+              };
+
+              // 原生 select 事件
+              $('.select-demo-primary').on('change', function(){
+                var value = this.value; // 获取选中项 value
+                var data = table.getRowData(this); // 获取当前行数据(如 id 等字段，以作为数据修改的索引)
+                // 更新数据中对应的字段
+                data.city = value;
+                // 显示 - 仅用于演示
+                layer.msg('选中值: '+ value +'<br>当前行数据：'+ JSON.stringify(data));
+              });
+
+
+            }
         /*parseData: function(res){ //将原始数据解析成 table 组件所规定的数据，res为从url中get到的数据
 	    var result;
 
@@ -154,6 +194,13 @@ layui.use('table', function() {
 	    };
 	},*/
     });
+
+    // 状态 - 开关操作
+    form.on('switch(demo-templet-status)', function(obj){
+        var id = this.value;
+        var name = this.name;
+        layer.tips(id + ' ' + name + ': '+ obj.elem.checked, obj.othis);
+          });
     // 底部分页栏事件
     table.on('pagebar(ID-table-demo-page)', function (obj) {
         var eventValue = obj.event; // 获得按钮 lay-event 值

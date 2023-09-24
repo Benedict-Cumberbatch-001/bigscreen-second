@@ -51,10 +51,10 @@ ul {
   flex: 5;
 }
 #data-analysis .column:nth-child(1) {
-  flex: 5;
+  flex: 4;
 }
 #data-analysis .column .Microseismic-shape {
-  width: 10.5rem;
+  width: 11.79rem;
   height: 2.5rem;
   outline: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -78,5 +78,8 @@ ul {
 }
 .layui-table-page {
   display: none;
+}
+.layui-border {
+  height: 100px;
 }
 /*# sourceMappingURL=微震监测.css.map */
