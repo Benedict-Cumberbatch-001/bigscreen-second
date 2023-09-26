@@ -1,119 +1,12 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="/static/css/layui.css" rel="stylesheet">
-  <title>Demo</title>
-  <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+    <meta charset="UTF-8">
+    <title>My Flask Website</title>
 </head>
-<body >
-<table class="layui-table">
-  <thead>
-    <tr>
-      <th>列1</th>
-      <th>列2</th>
-      <!-- 添加更多表格列 -->
-      <th>图表</th> <!-- 这是要嵌入图表的单元格 -->
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>数据1</td>
-      <td>数据2</td>
-      <!-- 添加更多数据列 -->
-      <td>
-        <div id="contain" style="width: 300px; height: 200px;"></div>
-        <!-- 使用一个具有唯一ID的div来容纳图表 -->
-      </td>
-    </tr>
-    <!-- 添加更多表格行 -->
-  </tbody>
-</table>
-
-
-<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
-
-
-
+<body>
+    <h1>{{ message }}</h1>
+    <p>Number 1: {{ number1 }}</p>
+    <p>Number 2: {{ number2 }}</p>
 </body>
-<script src="/static/js/layui.js"></script>
-<script src="/static/js/jquery.js"></script>
-<script src="/static/js/echarts.js"></script>
-
-<script>
-
-var weizhen=echarts.init(document.getElementById('contain'));
-$.get('/static/aqi-beijing.json', function (data) {
-    console.log('dafdsf')
-        weizhen.setOption(
-            (option = {
-                backgroundColor: 'yellow',
-                title: {
-                    text: '微震监测数据/年月日',
-                    left: '1%'
-                },
-                tooltip: {
-                    trigger: 'axis'
-                },
-                grid: {
-                    left: '5%',
-                    right: '15%',
-                    bottom: '10%',
-
-                },
-                xAxis: {
-                    data: data.map(function (item) {
-                        return item[0];
-                    })
-                },
-                yAxis: {},
-
-                dataZoom: [
-                    {
-                        startValue: '2014-06-01'
-                    },
-                    {
-                        type: 'inside'
-                    }
-                ],
-
-                series: {
-                    name: 'Beijing AQI',
-                    type: 'line',
-                    lineStyle: {
-                        color: 'red',
-                    },
-                    symbol: 'none',
-                    data: data.map(function (item) {
-                        return item[1];
-                    })
-                }
-            })
-        );
-    });
-    window.addEventListener("resize", function () {//echarts自带的能随着页面大小自动变化的函数
-        weizhen.resize();
-    });
-layui.use('table', function(){
-    console.log('fgfhrt')
-  var table = layui.table;
-
-  // 初始化表格
-
-  // 初始化ECharts图表
-
-  var chartContainer1 = document.getElementById('contain');
-  var myChart1 = echarts.init(chartContainer1);
-
-  // 定义图表配置项和数据
-  var option1 = {
-    // 在这里配置您的图表选项和数据
-  };
-
-  // 使用setOption方法将配置项应用到图表
-  myChart1.setOption(option1);
-});
-
-</script>
 </html>

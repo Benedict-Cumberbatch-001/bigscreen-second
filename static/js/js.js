@@ -595,7 +595,7 @@ AQI.resize();
 });
 
 
-// $.get('/static/js/aqi-beijing.json', function (data) {
+// $.get('/static/js/micr_1.json', function (data) {
 //   AQI.setOption(
 //     (option = {
 //
