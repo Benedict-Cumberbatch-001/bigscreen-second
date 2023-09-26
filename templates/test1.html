@@ -1,86 +1,80 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <title>Sortable Table</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            border: 1px solid #ddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-            cursor: pointer;
-        }
-
-        tr:nth-child(even) {
-            background-color: #f2f2f2;
-        }
-
-        tr:hover {
-            background-color: #ddd;
-        }
-    </style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Demo</title>
+  <!-- 请勿在项目正式环境中引用该 layui.css 地址 -->
+  <link href="/static/css/layui.css" rel="stylesheet">
 </head>
 <body>
+<div class="layui-tab " >
+      <ul class="layui-tab-title" >
+        <li class="layui-this" style="width: 2rem">数据采集</li>
+        <li style="width: 2rem">参数设置</li>
+        <li style="width: 2rem">数据分析</li>
+        <li style="width: 2rem">微震定位</li>
+        <li style="width: 2rem">智能预警</li>
+      </ul>
+      <div class="layui-tab-content">
+        <div class="layui-tab-item layui-show">内容-1</div>
 
-<table id="sortableTable">
-    <thead>
-        <tr>
-            <th onclick="sortTable(0)">Name</th>
-            <th onclick="sortTable(1)">Age</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-            <td>Alice</td>
-            <td>25</td>
-        </tr>
-        <tr>
-            <td>Bob</td>
-            <td>30</td>
-        </tr>
-        <tr>
-            <td>Charlie</td>
-            <td>22</td>
-        </tr>
-        <!-- 添加更多数据行 -->
-    </tbody>
-</table>
+        <div class="layui-tab-item">内容-2</div>
+        <!--数据分析页面-->
+        <div class="layui-tab-item" >
+            <div id="data-analysis">
+                <!--左侧微震显示页面-->
+                <div class="column">
+                    <div class="layui-card layui-panel" >
+                    <table class="layui-hide" id="ID-table-demo-page"></table>
+                    <!-- 数据类型选择 -->
+                    <script type="text/html" id="TPL-select-primary">
+                      {{#  var cityList = d.cityList || ["微震 1","汽笛 2","电流 3","爆破 4","噪声 5"]; }}
+                      <select name="type" class="layui-border select-demo-primary" lay-ignore>
+                        <option value="">初始值 -1</option>
+                        {{#  layui.each(cityList, function(i, v){ }}
+                        <option value="{{= v }}" {{= v === d.city ? 'selected' : '' }}>{{= v }}</option>
+                        {{#  }); }}
+                      </select>
+                    </script>
+                    <!-- 噪声状态开关 -->
+                    <script type="text/html" id="ID-table-demo-templet-switch">
+                      <input type="checkbox" name="noise" value="{{= d.id }}" title="有噪声|无噪声" lay-skin="switch" lay-filter="demo-templet-status" {{= d.id == 10001 ? "" : "" }}>
+                    </script>
+                    <!--<script type="text/html" id="waveform" >
+                        <div style="width: 500px;height: 300px;" id="weizhen"></div>
+                         <img src="/static/image/pexels-amar-preciado-12663429.jpg" ></img>
+                    </script>-->
+                    <script type="text/html" id="ID-table-demo-page-pagebar">
+                    <div class="layui-btn-container">
+                        <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn1">底部按钮1</button>
+                        <button class="layui-btn layui-btn-sm" lay-event="footerDemoBtn2">底部按钮2</button>
+                    </div>
+                    </script>
+                    </div>
+                </div>
+                <!--右侧功能页面-->
+                <div class="column">
+                    <h2 style="text-align: center;font-size: 0.3rem;font-weight:500; font-family:黑体;border: 1px solid rgba(0,0,0,0.2) ;padding: 0.25rem ">微震监测传感器数据波形</h2>
+                    <div class="Microseismic-shape" id="sensor1"></div>
+                    <div class="Microseismic-shape" id="sensor2"></div>
+                    <div class="Microseismic-shape" id="sensor3"></div>
+                    <div class="Microseismic-shape" id="sensor4"></div>
+                    <div class="Microseismic-shape" id="sensor5"></div>
+                    <div class="Microseismic-shape" id="sensor6"></div>
+                </div>
+            </div>
+        </div>
 
-<script>
-    let sortOrder = 1; // 初始排序顺序（1为升序，-1为降序）
+        <div class="layui-tab-item">内容-4</div>
 
-    function sortTable(columnIndex) {
-        const table = document.getElementById("sortableTable");
-        const tbody = table.getElementsByTagName("tbody")[0];
-        const rows = tbody.getElementsByTagName("tr");
-        const arr = [];
+        <div class="layui-tab-item">内容-5</div>
 
-        for (let i = 0; i < rows.length; i++) {
-            const cellValue = rows[i].getElementsByTagName("td")[columnIndex].textContent;
-            arr.push({ index: i, value: cellValue });
-        }
+      </div>
+    </div>
 
-        arr.sort((a, b) => {
-            return sortOrder * a.value.localeCompare(b.value);
-        });
-
-        for (let i = 0; i < arr.length; i++) {
-            tbody.appendChild(rows[arr[i].index]);
-        }
-
-        sortOrder *= -1; // 切换排序顺序
-    }
-</script>
+<!-- 请勿在项目正式环境中引用该 layui.js 地址 -->
+<script src="/static/js/layui.js"></script>
 
 </body>
 </html>
-

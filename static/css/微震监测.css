@@ -13,14 +13,11 @@ h1 {
   font-weight: bold;
   font-size: 0.35rem;
 }
-ul {
-  text-align: center;
-}
 .box {
   position: relative;
   display: flex;
   height: 16.25rem;
-  width: 21.25rem;
+  width: 23rem;
 }
 .switch {
   height: 20%;
@@ -54,7 +51,7 @@ ul {
   flex: 4;
 }
 #data-analysis .column .Microseismic-shape {
-  width: 11.79rem;
+  width: 10.85rem;
   height: 2.5rem;
   outline: 1px solid rgba(0, 0, 0, 0.2);
 }
@@ -81,5 +78,8 @@ ul {
 }
 .layui-border {
   height: 100px;
+}
+.layui-tab-title .layui-this {
+  color: #16baaa;
 }
 /*# sourceMappingURL=微震监测.css.map */
