@@ -15,6 +15,7 @@ function setmarkline(sensor,mndata,p,s){
                                             color: 'red',
                                         },
                                         symbol: 'rect',
+                                        showSymbol:false,
                                         data: mndata.map(function (item) {
                                           return item[1];
                                         }),
@@ -52,7 +53,7 @@ function setmarkline(sensor,mndata,p,s){
 // Function to load data from a JSON file
 function loadDataFromJson(index) {
     //var sensorId = sensors[index].id;
-    var jsonFileName = '/static/micr_' + (index + 1) + '.json'; // Adjust the JSON file naming convention as needed
+    var jsonFileName = '/static/weizhen_' + (index+1) + '.json'; // Adjust the JSON file naming convention as needed
     //var sensor = echarts.init(document.getElementById(sensorId));
     var sensors=[
     {id:'sensor1'},
@@ -73,8 +74,11 @@ function loadDataFromJson(index) {
     for (var i=0; i < sensors.length; i++) {
     // 在 loadDataFromJson 函数中，您可以使用立即执行函数来正确捕获变量 i，以确保在回调函数中访问到正确的 sensorcharts[i]
     (function (i) {// 使用立即执行函数来捕获变量 i
+
         var mndata;
         $.get(jsonFileName, function (data) {
+            data=data["data"][i]["wave-data"]
+            // console.log(data)
             mndata=data
             sensorcharts[i].setOption(
                 (option = {
@@ -101,6 +105,13 @@ function loadDataFromJson(index) {
 
                     },
                     xAxis: {
+                        axisLabel:{
+
+                            show:false
+                        },
+                        axisTick:{
+                          show:false
+                        },
                         data: data.map(function (item) {
                             return item[0];
                         })
@@ -109,8 +120,8 @@ function loadDataFromJson(index) {
 
                     dataZoom: [
                         {
-                            startValue: '2014-06-01',
-                            endValue:'2015-02-24'
+                            // startValue: '2014-06-01',
+                            // endValue:'2015-02-24'
                         },
                         {
                             type: 'inside'
@@ -128,8 +139,10 @@ function loadDataFromJson(index) {
                         type: 'line',
                         lineStyle: {
                             color: 'red',
+                            width:1
                         },
                         symbol: 'rect',
+                        showSymbol:false,
                         data: data.map(function (item) {
                             return item[1];
                         })
@@ -175,7 +188,7 @@ function loadDataFromJson(index) {
     // 加载table实例
     var inst = table.render({
         elem: '#ID-table-demo-page',
-        url: '/static/weizhen.json', // 此处为静态模拟数据，实际使用时需换成真实接口，数据接口
+        url: jsonFileName, // 此处为静态模拟数据，实际使用时需换成真实接口，数据接口
         page: { // 支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
             limit: 15,
             limits: [5, 10, 15, 20],
@@ -199,10 +212,11 @@ function loadDataFromJson(index) {
             {field: 'noise', width: 133.93, title: '是否含有噪声', sort: false,templet: '#ID-table-demo-templet-switch'},
             {field: 'p-wave arrival time', width: 133.93, title: 'P波到时', sort: false},
             {field: 's-wave arrival time', width: 133.93, title: 'S波到时', sort: false},
-            {field: 'time', width: 198, title: '时间', sort: false},
+            {field: 'time', width: 198, title: '采集时间', sort: false},
         ]],
         done: function(res, curr, count){
               var options = this;
+              console.log(options)
               // 获取当前行数据
               table.getRowData = function(elem){
                 var index = $(elem).closest('tr').data('index');
@@ -215,8 +229,34 @@ function loadDataFromJson(index) {
                 var data = table.getRowData(this); // 获取当前行数据(如 id 等字段，以作为数据修改的索引)
                 // 更新数据中对应的字段
                 data.data_type = value;
+                console.log(data["data type"])
+
+                if (value=="噪声"){
+                datatype=0
+                }else if (value=="微震") {
+                datatype = 1
+                }else if (value=="汽笛"){
+                datatype=2
+                }else if (value=="电流"){
+                datatype=3
+                }else if (value=="爆破"){
+                datatype=4
+                }
+                data["data type"]=datatype
+
+                var updatedJsonString = JSON.stringify(data)
+                $.get(jsonFileName, function (jsondata){
+                    jsondata["data"][i]=updatedJsonString
+
+                })
+
+
+                // console.log(datatype)
+
+                // console.log(JSON.stringify(data))
+
                 // 显示 - 仅用于演示
-                layer.msg('选中值: '+ value +'<br>当前行数据：'+ JSON.stringify(data));
+                // layer.msg('选中值: '+ value +'<br>当前行数据：'+ JSON.stringify(data));
               });
 
 
